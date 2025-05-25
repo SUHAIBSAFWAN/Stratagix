@@ -12,7 +12,8 @@ import {
   Building, 
   LayoutDashboard, 
   MenuIcon, 
-  X 
+  X,
+  CalendarCheck // Added for Planner icon
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -25,15 +26,17 @@ interface SidebarItemProps {
   icon: React.ReactNode;
   title: string;
   isOpen: boolean;
+  target?: string; // Added for new tab functionality
 }
 
-const SidebarItem = ({ href, icon, title, isOpen }: SidebarItemProps) => {
+const SidebarItem = ({ href, icon, title, isOpen, target }: SidebarItemProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
   return (
     <Link
       href={href}
+      target={target} // Added to support opening in new tab
       className={cn(
         buttonVariants({ variant: 'ghost' }),
         'justify-start h-10',
@@ -64,10 +67,8 @@ export function Sidebar() {
           >
             <div className="flex items-center justify-between h-16 px-4 border-b">
               <span className="text-xl font-bold">
-  STRATEGI<span className="text-blue-500 text-3xl">X</span>
-</span>
-
-
+                STRATEGI<span className="text-blue-500 text-3xl">X</span>
+              </span>
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-2 rounded-md hover:bg-accent"
@@ -117,6 +118,14 @@ export function Sidebar() {
                 icon={<Users size={20} />} 
                 title="Audience" 
                 isOpen={isOpen} 
+              />
+              {/* Added Planner item */}
+              <SidebarItem 
+                href="https://stratagixx.vercel.app/" // Replace with actual project URL
+                icon={<CalendarCheck size={20} />} 
+                title="Planner" 
+                isOpen={isOpen}
+                target="_blank" 
               />
               <SidebarItem 
                 href="/settings" 
@@ -188,6 +197,14 @@ export function Sidebar() {
                 icon={<Users size={20} />} 
                 title="Audience" 
                 isOpen={isOpen} 
+              />
+              {/* Added Planner item */}
+              <SidebarItem 
+                href="https://github.com/Parth-Asawa/strategix.git" // Replace with actual project URL
+                icon={<CalendarCheck size={20} />} 
+                title="Planner" 
+                isOpen={isOpen}
+                target="_blank" 
               />
               <SidebarItem 
                 href="/settings" 
