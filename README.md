@@ -1,4 +1,4 @@
-# StrageiX - Social Media Management Platform
+# STRATEGIX - Social Media Management Platform
 
 A comprehensive social media management platform built with Next.js, featuring analytics, content planning, and trend analysis for Instagram and LinkedIn.
 
