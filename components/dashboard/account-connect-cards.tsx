@@ -13,7 +13,6 @@ interface ConnectedAccountProps {
 
 const ConnectedAccount = ({ type, isConnected }: ConnectedAccountProps) => {
   const handleConnect = () => {
-    // This would trigger OAuth flow in a real application
     console.log(`Connect to ${type}`);
   };
 
@@ -22,7 +21,7 @@ const ConnectedAccount = ({ type, isConnected }: ConnectedAccountProps) => {
       whileHover={{ y: -5 }}
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
-      <Card className={isConnected ? 'border-primary/50' : ''}>
+      <Card className={`w-full max-w-sm ${isConnected ? 'border-primary/50' : ''} shadow-sm rounded-lg`}>
         <CardHeader className="space-y-0 pb-2">
           <div className="flex justify-between items-center">
             <CardTitle className="text-lg flex items-center">
@@ -91,10 +90,11 @@ const ConnectedAccount = ({ type, isConnected }: ConnectedAccountProps) => {
 
 export function AccountConnectCards() {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <ConnectedAccount type="instagram" isConnected={true} />
-      <ConnectedAccount type="linkedin" isConnected={true} />
-      {/* You can add more platforms here */}
+    <div className="max-w-2xl mx-auto">
+      <div className="grid gap-4 md:grid-cols-2">
+        <ConnectedAccount type="instagram" isConnected={true} />
+        <ConnectedAccount type="linkedin" isConnected={true} />
+      </div>
     </div>
   );
 }

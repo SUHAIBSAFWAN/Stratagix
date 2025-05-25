@@ -4,11 +4,12 @@ import { Inter } from 'next/font/google';
 import { Providers } from './providers';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
+import Chatbot from '@/components/Chatbot';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'SocialPro | Social Media Management Platform',
+  title: 'STRATEGIX | Social Media Management Platform',
   description: 'Comprehensive social media management platform for professionals',
 };
 
@@ -34,6 +35,7 @@ export default function RootLayout({
               </main>
             </div>
           </div>
+          <Chatbot />
         </Providers>
       </body>
     </html>

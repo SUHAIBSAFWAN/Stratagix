@@ -63,7 +63,11 @@ export function Sidebar() {
             className="hidden md:flex md:flex-col border-r bg-background h-screen"
           >
             <div className="flex items-center justify-between h-16 px-4 border-b">
-              <span className="text-xl font-bold">SocialPro</span>
+              <span className="text-xl font-bold">
+  STRATEGI<span className="text-blue-500 text-3xl">X</span>
+</span>
+
+
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-2 rounded-md hover:bg-accent"

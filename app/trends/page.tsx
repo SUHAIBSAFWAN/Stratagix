@@ -155,6 +155,73 @@ const MomentumBadge = ({ momentum }: { momentum: string }) => {
   );
 };
 
+// Component to render trends based on category
+const TrendList = ({ trends }: { trends: typeof trendData }) => {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {trends.map((trend) => (
+        <motion.div
+          key={trend.id}
+          whileHover={{ y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          className="cursor-pointer"
+        >
+          <Card>
+            <CardHeader className="pb-2">
+              <div className="flex justify-between items-start">
+                <div>
+                  <Badge variant="outline" className="mb-2">
+                    {trend.category}
+                  </Badge>
+                  <CardTitle>{trend.title}</CardTitle>
+                </div>
+                <div className="flex items-center space-x-1">
+                  {getPlatformIcon(trend.platform)}
+                </div>
+              </div>
+              <CardDescription className="line-clamp-2 mt-1">
+                {trend.description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium">Relevance</span>
+                    <span className="text-sm font-medium">{trend.relevance}%</span>
+                  </div>
+                  <Progress value={trend.relevance} className="h-2" />
+                </div>
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium">Growth</span>
+                    <span className="text-sm font-medium">+{trend.growth}%</span>
+                  </div>
+                  <Progress value={trend.growth} className="h-2" />
+                </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {trend.hashtags.slice(0, 3).map((tag, index) => (
+                    <Badge key={index} variant="secondary" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              <MomentumBadge momentum={trend.momentum} />
+              <Button variant="ghost" size="sm">
+                <Eye className="mr-2 h-4 w-4" />
+                View Details
+              </Button>
+            </CardFooter>
+          </Card>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 export default function TrendsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -170,6 +237,12 @@ export default function TrendsPage() {
     
     return matchesCategory && matchesSearch;
   });
+
+  // Filter trends for each category
+  const businessTrends = trendData.filter(trend => trend.category.toLowerCase() === 'business');
+  const contentTrends = trendData.filter(trend => trend.category.toLowerCase() === 'content');
+  const strategyTrends = trendData.filter(trend => trend.category.toLowerCase() === 'strategy');
+  const industryTrends = trendData.filter(trend => trend.category.toLowerCase() === 'industry');
   
   return (
     <div className="space-y-8">
@@ -271,18 +344,54 @@ export default function TrendsPage() {
           )}
         </TabsContent>
         
-        {/* Other tabs will share the same content structure */}
-        <TabsContent value="business">
-          {/* Same layout as 'all' */}
+        {/* Populated TabsContent for each category */}
+        <TabsContent value="business" className="space-y-4">
+          <TrendList trends={businessTrends} />
+          {businessTrends.length === 0 && (
+            <div className="flex flex-col items-center justify-center p-8">
+              <TrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
+              <h2 className="text-xl font-medium mb-1">No trends found</h2>
+              <p className="text-muted-foreground text-center">
+                No trends available in this category.
+              </p>
+            </div>
+          )}
         </TabsContent>
-        <TabsContent value="content">
-          {/* Same layout as 'all' */}
+        <TabsContent value="content" className="space-y-4">
+          <TrendList trends={contentTrends} />
+          {contentTrends.length === 0 && (
+            <div className="flex flex-col items-center justify-center p-8">
+              <TrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
+              <h2 className="text-xl font-medium mb-1">No trends found</h2>
+              <p className="text-muted-foreground text-center">
+                No trends available in this category.
+              </p>
+            </div>
+          )}
         </TabsContent>
-        <TabsContent value="strategy">
-          {/* Same layout as 'all' */}
+        <TabsContent value="strategy" className="space-y-4">
+          <TrendList trends={strategyTrends} />
+          {strategyTrends.length === 0 && (
+            <div className="flex flex-col items-center justify-center p-8">
+              <TrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
+              <h2 className="text-xl font-medium mb-1">No trends found</h2>
+              <p className="text-muted-foreground text-center">
+                No trends available in this category.
+              </p>
+            </div>
+          )}
         </TabsContent>
-        <TabsContent value="industry">
-          {/* Same layout as 'all' */}
+        <TabsContent value="industry" className="space-y-4">
+          <TrendList trends={industryTrends} />
+          {industryTrends.length === 0 && (
+            <div className="flex flex-col items-center justify-center p-8">
+              <TrendingUp className="h-12 w-12 text-muted-foreground mb-4" />
+              <h2 className="text-xl font-medium mb-1">No trends found</h2>
+              <p className="text-muted-foreground text-center">
+                No trends available in this category.
+              </p>
+            </div>
+          )}
         </TabsContent>
       </Tabs>
       

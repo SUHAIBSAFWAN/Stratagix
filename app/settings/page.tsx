@@ -248,7 +248,7 @@ export default function SettingsPage() {
                   <div className="flex justify-between items-center">
                     <div>
                       <p className="font-medium">Professional Plan</p>
-                      <p className="text-sm text-muted-foreground">$29/month</p>
+                      <p className="text-sm text-muted-foreground">Rs.35/month</p>
                     </div>
                     <Button>Upgrade Plan</Button>
                   </div>
@@ -283,7 +283,7 @@ export default function SettingsPage() {
                         <p className="text-sm text-muted-foreground">April 1, 2025</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">$29.00</p>
+                        <p className="font-medium">Rs.35.00</p>
                         <Button variant="link" size="sm" className="h-auto p-0">
                           Download
                         </Button>

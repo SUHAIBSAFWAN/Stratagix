@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { Instagram, Linkedin, Lock, User } from 'lucide-react';
 
@@ -70,7 +70,7 @@ export default function AuthPage() {
     <div className="flex items-center justify-center min-h-screen bg-background">
       <div className="w-full max-w-md p-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold">SocialPro</h1>
+          <h1 className="text-3xl font-bold">STRATEGIX</h1>
           <p className="text-muted-foreground mt-2">Your all-in-one social media management platform</p>
         </div>
 
