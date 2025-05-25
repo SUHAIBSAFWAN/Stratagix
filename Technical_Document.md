@@ -1,4 +1,4 @@
-# SocialPro Technical Documentation
+# STRATEGIX Technical Documentation
 
 ## Architecture Overview
 
